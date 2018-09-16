@@ -1,31 +1,35 @@
 ﻿using System;
-
+using System.Text;
 namespace RNATranscriptionModule
 {
     public static class RnaTranscription
     {
         public static string ToRna(string nucleotide)
         {
-            string rna = "";
+            //we can not make the changes in the original string that's why i created the new string
+            //used stringbuilder because i will save the memory in the heap
+        
+            StringBuilder rna=new StringBuilder();
             foreach(char s  in nucleotide)
             {
                 
                 switch(s)
                 {
-                    case 'G': rna += "C";
+                    case 'G': rna.Append("C");
                           break;
-                    case 'C': rna += "G";
+                    case 'C': rna.Append("G");
                           break;
-                    case 'T': rna += "A";
+                    case 'T': rna.Append("A");
                           break;
-                    case 'A': rna += "U";
+                    case 'A': rna.Append("U");
                           break;    
                     default:
                         throw new ArgumentException("char should be G,C,T,A");
 
                 }
             }
-            return rna;
+            //need to use Tostring method to get string from stringbuilder
+            return rna.ToString();
         }
     }
 }
